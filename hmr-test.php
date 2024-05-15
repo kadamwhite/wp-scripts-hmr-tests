@@ -17,6 +17,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+if ( ! defined( 'WP_DEBUG' ) ) {
+	define( 'WP_DEBUG', true );
+}
+if ( ! defined( 'SCRIPT_DEBUG' ) ) {
+	define( 'SCRIPT_DEBUG', true );
+}
+if ( ! defined( 'WP_DEVELOPMENT_MODE' ) ) {
+	define( 'WP_DEVELOPMENT_MODE', 'plugin' );
+}
+if ( ! defined( 'WP_ENVIRONMENT_TYPE' ) ) {
+	define( 'WP_ENVIRONMENT_TYPE', 'local' );
+}
+
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
  * Behind the scenes, it registers also all assets so they can be enqueued
