@@ -23,12 +23,16 @@ if ( ! defined( 'WP_DEBUG' ) ) {
 if ( ! defined( 'SCRIPT_DEBUG' ) ) {
 	define( 'SCRIPT_DEBUG', true );
 }
-if ( ! defined( 'WP_DEVELOPMENT_MODE' ) ) {
-	define( 'WP_DEVELOPMENT_MODE', 'plugin' );
-}
 if ( ! defined( 'WP_ENVIRONMENT_TYPE' ) ) {
 	define( 'WP_ENVIRONMENT_TYPE', 'local' );
 }
+
+// Diagnostics for constants.
+// wp_die( '<pre>' . wp_json_encode( [
+// 	'WP_DEBUG' => WP_DEBUG ? 'true' : 'false',
+// 	'SCRIPT_DEBUG' => SCRIPT_DEBUG ? 'true' : 'false',
+// 	'WP_ENVIRONMENT_TYPE' => WP_ENVIRONMENT_TYPE ? 'true' : 'false',
+// ], JSON_PRETTY_PRINT ) . '<pre>' );
 
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
