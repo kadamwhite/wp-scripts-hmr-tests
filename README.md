@@ -14,8 +14,40 @@ Actual: Running `npm run start` (an alias for the `wp-scripts start --hot` comma
 
 ![screen recording of CSS not reloading when edited](./docs/HMR_test_1_-_styles_do_not_update.gif)
 
-Testing: set `HMR_TEST_VARIANT` to `css-reloading` in the [`hmr-test.php` file](./hmr-test.php), then run
+**Testing**
+
+Set `HMR_TEST_VARIANT` to `css-reloading` in the [`hmr-test.php` file](./hmr-test.php), then run
 
 ```
 HMR_TEST_VARIANT=css-reloading npm start
 ```
+
+## Block registration details cannot change during HMR
+
+Expected: Changing a block's attributes or category would take effect immediately when using Hot.
+
+Actual: Editing React components works, but changing a block's attributes or category in `block.json` or `index.js` causes a full-page reload. Trying to work around this by adding `module.hot.accept()` to the index.js entrypoint causes hot-swapping to fail with the error,
+
+> ```
+> Block "create-block/hmr-test" is already registered.
+> ```
+
+**Testing**
+
+Set `HMR_TEST_VARIANT` to `block-hot-swapping` in the [`hmr-test.php` file](./hmr-test.php), then run
+
+```
+HMR_TEST_VARIANT=block-hot-swapping npm start
+```
+
+Edit a block attribute to trigger the error, for example by changing the icon (we suggest `buddicons-activity`) to `blocks.json`, or adding an attribute definition like the following:
+
+> ```
+> 	"attributes": {
+> 		"text": {
+> 			"type": "string"
+> 		}
+> 	},
+> ```
+
+To enable the hot-swapping code fix, un-comment the commented lines within the block registration call (`...metadata`) and at the bottom of [`block-hot-swapping/src/index.js`](./block-hot-swapping/src/index.js)

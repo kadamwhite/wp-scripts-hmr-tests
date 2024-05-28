@@ -27,6 +27,8 @@ import metadata from './block.json';
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 registerBlockType( metadata.name, {
+	// ...metadata,
+
 	/**
 	 * @see ./edit.js
 	 */
@@ -37,3 +39,14 @@ registerBlockType( metadata.name, {
 	 */
 	save,
 } );
+
+// Block HMR boilerplate.
+if ( module.hot ) {
+	module.hot.accept();
+	// const {
+	// 	deregisterHotBlock,
+	// 	refreshHotBlock,
+	// } = require( './hot-blocks.js' );
+	// module.hot.dispose( deregisterHotBlock( metadata.name ) );
+	// refreshHotBlock( metadata.name, module.hot.data );
+}
