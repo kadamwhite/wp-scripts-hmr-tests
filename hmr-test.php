@@ -33,6 +33,10 @@ if ( ! defined( 'WP_ENVIRONMENT_TYPE' ) ) {
 	define( 'WP_ENVIRONMENT_TYPE', 'local' );
 }
 
+if ( ! defined( 'WP_DEVELOPMENT_MODE' ) ) {
+	define( 'WP_DEVELOPMENT_MODE', 'plugin' );
+}
+
 // Diagnostics for constants.
 // wp_die( '<pre>' . wp_json_encode( [
 // 	'WP_DEBUG' => WP_DEBUG ? 'true' : 'false',
