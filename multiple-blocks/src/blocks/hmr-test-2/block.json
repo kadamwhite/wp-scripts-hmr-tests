@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "create-block/hmr-test-2",
+	"version": "0.1.0",
+	"title": "Hmr Test 2",
+	"category": "widgets",
+	"icon": "buddicons-activity",
+	"description": "Another example block scaffolded with Create Block tool.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"content": {
+			"type": "string"
+		}
+	},
+	"textdomain": "hmr-test",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}
