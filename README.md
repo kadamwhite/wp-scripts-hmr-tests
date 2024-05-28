@@ -51,3 +51,23 @@ Edit a block attribute to trigger the error, for example by changing the icon (w
 > ```
 
 To enable the hot-swapping code fix, un-comment the commented lines within the block registration call (`...metadata`) and at the bottom of [`block-hot-swapping/src/index.js`](./block-hot-swapping/src/index.js)
+
+## Multiple Blocks cannot all hot-reload at once
+
+Expected: If you have multiple blocks, `--hot` "just works" for all of them.
+
+Actual: Only one block bundle will hot-swap at a time, although a warning will be shown — the other block will not update. For example, editing the `Edit` component of `multiple-blocks/src/blocks/hmr-test-2` causes this error,
+
+> ```
+> [HMR] Update failed: Loading hot update chunk blocks/hmr-test/index failed.
+> (missing: http://localhost:8888/wp-content/plugins/hmr-test/multiple-blocks/build/blocks/hmr-test/index.88f75532ddeaaa697f97.hot-update.js)
+> ChunkLoadError
+```
+
+and edits to `multiple-blocks/src/blocks/hmr-test-2` have no effect.
+
+**Testing**
+
+Theoretically, a single runtime chunk in Webpack is meant to fix this. But if you create one, the blocks won't load by default.
+
+Uncomment the lines in [`hmr-test.php`](./hmr-test.php) to

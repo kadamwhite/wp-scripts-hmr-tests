@@ -61,3 +61,17 @@ function create_block_hmr_test_block_init() {
 	}
 }
 add_action( 'init', 'create_block_hmr_test_block_init' );
+
+if ( HMR_TEST_VARIANT === 'multiple-blocks' ) {
+	// // Enqueue runtime chunk.
+	// add_action( 'enqueue_block_editor_assets', function() {
+	// 	$runtime_asset_file = include( trailingslashit( __DIR__ ) . '/multiple-blocks/build/runtime.asset.php');
+
+	// 	wp_enqueue_script(
+	// 		'hmr-runtime',
+	// 		plugins_url( 'multiple-blocks/build/runtime.js', __FILE__ ),
+	// 		$runtime_asset_file['dependencies'],
+	// 		$runtime_asset_file['version']
+	// 	);
+	// }, 9 );
+}

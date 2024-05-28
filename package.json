@@ -14,7 +14,10 @@
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update",
-		"start": "wp-scripts start --webpack-src-dir=${HMR_TEST_VARIANT:-.}/src --output-path=${HMR_TEST_VARIANT:-.}/build --hot"
+		"start:css-reloading": "wp-scripts start --webpack-src-dir=css-reloading/src --output-path=css-reloading/build --hot",
+		"start:block-hot-swapping": "wp-scripts start --webpack-src-dir=block-hot-swapping/src --output-path=block-hot-swapping/build --hot",
+		"start:multiple-blocks": "wp-scripts start --config=multiple-blocks/webpack.config.js --webpack-src-dir=multiple-blocks/src --output-path=multiple-blocks/build --hot",
+		"start": "npm run start:${HMR_TEST_VARIANT:-.}"
 	},
 	"devDependencies": {
 		"@wordpress/env": "^9.9.0",
