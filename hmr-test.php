@@ -14,8 +14,9 @@
  */
 
 define( 'HMR_TEST_VARIANT',
-	'css-reloading'
+	// 'css-reloading'
 	// 'block-hot-swapping'
+	'multiple-blocks'
 	// 'build-optimization'
 );
 
@@ -52,6 +53,11 @@ if ( ! defined( 'WP_DEVELOPMENT_MODE' ) ) {
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 function create_block_hmr_test_block_init() {
-	register_block_type( trailingslashit( __DIR__ ) . HMR_TEST_VARIANT . '/build' );
+	if ( HMR_TEST_VARIANT !== 'multiple-blocks' ) {
+		register_block_type( trailingslashit( __DIR__ ) . HMR_TEST_VARIANT . '/build' );
+	} else {
+		register_block_type( trailingslashit( __DIR__ ) . HMR_TEST_VARIANT . '/build/blocks/hmr-test' );
+		register_block_type( trailingslashit( __DIR__ ) . HMR_TEST_VARIANT . '/build/blocks/hmr-test-2' );
+	}
 }
 add_action( 'init', 'create_block_hmr_test_block_init' );
