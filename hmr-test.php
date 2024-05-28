@@ -13,6 +13,12 @@
  * @package CreateBlock
  */
 
+define( 'HMR_TEST_VARIANT',
+	'css-reloading'
+	// 'block-hot-swapping'
+	// 'build-optimization'
+);
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -42,6 +48,6 @@ if ( ! defined( 'WP_ENVIRONMENT_TYPE' ) ) {
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 function create_block_hmr_test_block_init() {
-	register_block_type( __DIR__ . '/build' );
+	register_block_type( trailingslashit( __DIR__ ) . HMR_TEST_VARIANT . '/build' );
 }
 add_action( 'init', 'create_block_hmr_test_block_init' );
